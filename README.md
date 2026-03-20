@@ -1,70 +1,131 @@
-# Getting Started with Create React App
+# Subscription Manager — Диспетчер подписок
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+**Subscription Manager** — это веб-приложение на React, позволяющее управлять регулярными подписками: добавлять, редактировать, удалять подписки, отслеживать ежемесячные и годовые расходы, видеть календарь списаний и распределение по категориям. Данные сохраняются в localStorage браузера, поэтому приложение работает без бэкенда.
 
-## Available Scripts
+### Главная страница
+![](screenshots/main_page.png)
 
-In the project directory, you can run:
+### Форма добавления подписки
+![](screenshots/add_form_page.png)
 
-### `npm start`
 
-Runs the app in the development mode.\
-Open [http://localhost:3000](http://localhost:3000) to view it in your browser.
+---
+## Структура проекта
+```
+subscription-manager/
+├── public/ # Статические файлы
+├── src/
+│ ├── components/ # React-компоненты
+│ │ ├── Header.jsx
+│ │ ├── Footer.jsx
+│ │ ├── StatsCards.jsx
+│ │ ├── SubscriptionForm.jsx
+│ │ ├── SubscriptionList.jsx
+│ │ ├── SubscriptionCard.jsx
+│ │ ├── CalendarSection.jsx
+│ │ ├── UpcomingCharges.jsx
+│ │ └── CategoryBreakdown.jsx
+│ ├── utils/ # Вспомогательные функции
+│ │ └── helpers.js
+│ ├── App.jsx # Корневой компонент
+│ ├── App.css # Глобальные стили
+│ └── index.js # Точка входа
+├── .gitignore
+├── package.json
+└── README.md
+```
 
-The page will reload when you make changes.\
-You may also see any lint errors in the console.
+## Функции
 
-### `npm test`
+- 📋 **Управление подписками**
+  - Добавление новой подписки с названием, стоимостью, периодом (ежемесячно, ежегодно, еженедельно, ежедневно), датой списания (число месяца), категорией и описанием
+  - Редактирование существующей подписки
+  - Удаление подписки
 
-Launches the test runner in the interactive watch mode.\
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
+- 📊 **Статистика**
+  - Количество активных подписок
+  - Суммарные расходы в месяц и в год
 
-### `npm run build`
+- 📅 **Календарь списаний**
+  - Визуальное отображение дней месяца с указанием количества списаний
+  - При наведении показываются названия и суммы подписок, привязанных к конкретному числу
 
-Builds the app for production to the `build` folder.\
-It correctly bundles React in production mode and optimizes the build for the best performance.
+- ⏰ **Ближайшие списания**
+  - Список подписок, списания по которым предстоят в текущем месяце (отсортированы по дате)
 
-The build is minified and the filenames include the hashes.\
-Your app is ready to be deployed!
+- 🏷️ **Категории**
+  - Распределение расходов по категориям (стриминг, софт, обучение, музыка, облако, другое)
 
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
+- 💾 **Локальное хранение**
+  - Все данные автоматически сохраняются в localStorage браузера и восстанавливаются при перезагрузке страницы
 
-### `npm run eject`
+## Используемые технологии
 
-**Note: this is a one-way operation. Once you `eject`, you can't go back!**
+| Технология       | Назначение                          |
+|------------------|-------------------------------------|
+| React 18+        | Библиотека для построения интерфейса |
+| JavaScript (ES6) | Язык разработки                     |
+| CSS3             | Стилизация компонентов              |
+| Lucide React     | Иконки                              |
+| LocalStorage API | Хранение данных на стороне клиента  |
+| Create React App | Сборка проекта (или Vite)           |
 
-If you aren't satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
+## Как запустить локально
 
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you're on your own.
+### Предварительные условия
+- Node.js (версия 14 или выше)
+- npm (обычно устанавливается вместе с Node.js)
+- Git (опционально, для клонирования репозитория)
 
-You don't have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn't feel obligated to use this feature. However we understand that this tool wouldn't be useful if you couldn't customize it when you are ready for it.
+### Шаги
 
-## Learn More
+1. **Клонировать репозиторий** (или скачать исходный код)
+   ```bash
+   git clone https://github.com/Artemka52/subscription-manager.git
+   cd subscription-manager
+   ```
 
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
+2. **Установить зависимости**
+   ```bash
+   npm install
+   ```
 
-To learn React, check out the [React documentation](https://reactjs.org/).
+3. **Запустить приложение в режиме разработки**
+   ```bash
+   npm start
+   ```
+   После этого откроется браузер с адресом [http://localhost:3000](http://localhost:3000). Если этого не произошло, откройте указанный URL вручную.
 
-### Code Splitting
+4. **Сборка для production** (опционально)
+   ```bash
+   npm run build
+   ```
+   Готовые файлы для развёртывания появятся в папке `build`.
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/code-splitting](https://facebook.github.io/create-react-app/docs/code-splitting)
+## Как использовать
 
-### Analyzing the Bundle Size
+1. **Добавление подписки**
+   - Нажмите кнопку «Добавить подписку».
+   - Заполните форму: название, стоимость, период, дату списания (число от 1 до 31), категорию, при необходимости описание.
+   - Нажмите «Добавить» (или «Обновить» при редактировании).
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size](https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size)
+2. **Просмотр списка подписок**
+   - Все добавленные подписки отображаются в левой колонке в виде карточек.
+   
+3. **Статистика**
+   - Вверху страницы показаны общее количество подписок, суммарные расходы в месяц и в год.
 
-### Making a Progressive Web App
+4. **Календарь списаний**
+   - В правой колонке представлен календарь на текущий месяц. Дни, в которые есть списания, выделены точкой и количеством подписок. При наведении отображаются названия и суммы.
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app](https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app)
+5. **Ближайшие списания**
+   - Ниже календаря показаны подписки, списания по которым предстоят в текущем месяце (от сегодняшнего числа и далее).
 
-### Advanced Configuration
+6. **Распределение по категориям**
+   - В правой колонке отображается список категорий с итоговыми суммами расходов по каждой.
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/advanced-configuration](https://facebook.github.io/create-react-app/docs/advanced-configuration)
+7. **Редактирование и удаление**
+   - Для редактирования нажмите иконку карандаша на карточке подписки, внесите изменения и сохраните.
+   - Для удаления нажмите иконку корзины и подтвердите действие.
 
-### Deployment
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/deployment](https://facebook.github.io/create-react-app/docs/deployment)
-
-### `npm run build` fails to minify
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify](https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify)
